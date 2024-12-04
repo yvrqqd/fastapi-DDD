@@ -1,0 +1,23 @@
+[run]
+source = app
+
+omit =
+    */__init__.py
+
+[report]
+show_missing = true
+
+sort = Cover
+
+exclude_lines =
+    if __name__ == '__main__':
+    pragma: no cover
+    def __repr__
+    raise NotImplementedError
+    type: ignore
+
+[html]
+directory = coverage_html_report
+
+[xml]
+output = coverage.xml

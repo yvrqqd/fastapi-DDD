@@ -1,0 +1,14 @@
+SQLAlchemy==2.0.36
+pydantic==2.10.2
+fastapi==0.115.5
+uvicorn==0.32.1
+pydantic-settings==2.6.1
+asyncpg==0.30.0
+alembic==1.14.0
+psycopg2-binary==2.9.10
+
+# might be better to declare in additional requirements.txt in the test folder
+# or have several versions of it for dev/prod...
+pytest==8.3.3
+pytest-asyncio==0.24.0
+pytest-cov==6.0.0
