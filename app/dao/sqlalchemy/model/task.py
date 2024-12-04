@@ -252,7 +252,7 @@ class SQLAlchemyTaskDAO:
             ).where(
                 SQLAlchemyTaskModel.id == task_id
             ).returning(
-                SQLAlchemyTaskModel
+                SQLAlchemyTaskModel.id
             )
 
             async with self.__db_engine.acquire_connection as conn:
