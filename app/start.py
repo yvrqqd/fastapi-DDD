@@ -6,8 +6,8 @@ from contextlib import asynccontextmanager
 
 import uvicorn
 
-# from alembic import command
-# from alembic.config import Config
+from alembic import command
+from alembic.config import Config
 from fastapi import FastAPI
 
 from app.manager import TaskManager
@@ -24,20 +24,20 @@ __all__ = (
 LOG: Logger
 
 
-# @asynccontextmanager
-# async def __run_migrations() -> AsyncIterator[None]:
-#     alembic_cfg = Config("alembic.ini")
-#
-#     try:
-#         command.upgrade(alembic_cfg, "head")
-#
-#         yield
-#
-#     except (Exception,) as error:
-#         LOG.error(f"An error occurred during migration: {error}")
-#
-#     finally:
-#         pass
+@asynccontextmanager
+async def __run_migrations() -> AsyncIterator[None]:
+    alembic_cfg = Config("alembic.ini")
+
+    try:
+        command.upgrade(alembic_cfg, "head")
+
+        yield
+
+    except (Exception,) as error:
+        LOG.error(f"An error occurred during migration: {error}")
+
+    finally:
+        pass
 
 def __configure_logger() -> None:
     """Configure the logger."""
@@ -71,8 +71,8 @@ def __create_db_engine() -> SQLAlchemyDBEngine:
 async def __lifespan(app: FastAPI) -> AsyncIterator[None]:
     LOG.info("startup")
 
-    # LOG.info("Running migrations...")
-    # __run_migrations()
+    LOG.info("Running migrations...")
+    __run_migrations()
 
     LOG.info("Starting db_engine...")
 
